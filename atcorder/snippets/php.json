@@ -1,0 +1,26 @@
+{
+	"input":{
+		"prefix": "in",
+		"body": "\\$S = fgets(STDIN);"
+	},
+	"input list":{
+		"prefix": "inlist",
+		"body": [
+			"\\$S = explode(' ', trim(fgets(STDIN)));",
+		]
+	},
+	"foreach":{
+		"prefix": "foreach",
+		"body": [
+			"foreach($S as $s){",
+			"}",  
+		]
+	},
+	"for":{
+		"prefix": "for",
+		"body": [
+			"for ($i=0; $i<$n; $i++) {",
+			"}",
+		]
+	},
+}
