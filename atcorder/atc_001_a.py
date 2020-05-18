@@ -50,5 +50,4 @@ if seen[goal[0]][goal[1]]:
     print('Yes')
 else:
     print('No')
-# printseen()
 
