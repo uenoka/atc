@@ -1,2 +1,3 @@
-for i in range(1,10000):
-    print(i*2019)
+s = "2450046197314"
+s = reversed(s)
+print("".join(list(s)))
