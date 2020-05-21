@@ -14,7 +14,6 @@ def canGo(nr, nc, dy, dx):
         return False
     if step[nr][nc] != -1:
         return False
-    print("you can go ", nr, nc)
     return True
 
 
