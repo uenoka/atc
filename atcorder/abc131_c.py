@@ -7,18 +7,15 @@ N を CD の最小公倍数で割り切れるもの
 で求められるはず
 '''
 import math
-import fractions
-from functools import reduce
-def gcd(*numbers):
-    return reduce(fractions.gcd, numbers)
-def gcd_list(numbers):
-    return reduce(fractions.gcd, numbers)
+from  fractions import gcd
 
 def lcm(a,b):
     return (a*b)//gcd(a,b)
 
 A,B,C,D = map(int,input().split())
-r = (B - A + 1)
-M = math.ceil(r/C) + math.ceil(r/D)
-N = math.ceil(r/lcm(C,D))
-print(r-M+N)
+d_cnt = B//D-(A-1)//D
+c_cnt = B//C-(A-1)//C
+cd = lcm(C,D)
+cd_cnt = B//cd-(A-1)//cd
+print(B-A+1-(c_cnt+d_cnt-cd_cnt))
+
