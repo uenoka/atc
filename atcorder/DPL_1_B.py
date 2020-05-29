@@ -9,3 +9,4 @@ for i in range(N):
     v,w = map(int,input().split())
     V.append(v)
     W.append(w)
+

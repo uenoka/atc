@@ -1,23 +1,25 @@
 # ALDS1_5_A.py
-memo = []
 
 
-def rec(m, a, idx, id):
-    if a == m:
-        return True
-    if idx >= len(A):
-        return False
-    _next = A[idx]
-    return rec(m, a+_next, idx+1, id+"1") or rec(m, a, idx+1, id+"0")
+def rec(a, use):
+    if use >= N:
+        memo[a] = True
+        return
+    _next = A[use]
+    rec(a+_next,use+1)
+    rec(a,use+1)
 
 
 N = int(input())
 A = list(map(int, input().split()))
-input()
+Q = int(input())
 M = list(map(int, input().split()))
 
+memo = [False]*2000
+rec(0, 0)
+# print(memo)
 for i in M:
-    if rec(i, 0, 0, "0"):
+    if memo[i]:
         print('yes')
     else:
         print('no')
