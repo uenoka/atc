@@ -7,22 +7,41 @@
 import itertools
 
 
-def match(pattern):
+def match(xy,pattern,n):
+    lies = [-1]*n
+    for i,v in enumerate(pattern):
+        print("lies,xy",lies)
+        if lies[i] != -1 and lies[i] != v:
+            return
+        lies[i] = v
+
+        if v == 0:
+            print("continue",i,v)
+            continue
+        else:
+            for j in xy[i]:
+                print("i,j",i,j)
+                if lies[j[0]-1] == -1 :
+                    lies[j[0]-1] = j[1]
+                elif lies[j[0]-1] != v:
+                    return
+    print(pattern,"is true")
     return True
 
 
 N = int(input())
-XY = []
-for _ in range(N):
+XY = [0]*N
+for i in range(N):
     A = int(input())
-    for i in range(A):
-        XY.append(list(map(int, input().split())))
-
+    a = []
+    for _ in range(A):
+        a.append(list(map(int, input().split())))
+    XY[i] = a
+print(XY)
 status = [(0, 1) for _ in range(N)]
 state = list(itertools.product(*status))
 ans = 0
 for i in state:
-    if match(i):
+    if match(XY,i,N):
         ans += 1
 print(ans)
-print(XY, state)
