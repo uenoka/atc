@@ -37,11 +37,10 @@ for i in range(N):
     for _ in range(A):
         a.append(list(map(int, input().split())))
     XY[i] = a
-print(XY)
 status = [(0, 1) for _ in range(N)]
 state = list(itertools.product(*status))
-ans = 0
+ans = []
 for i in state:
     if match(XY,i,N):
-        ans += 1
+        ans.append(i)
 print(ans)
