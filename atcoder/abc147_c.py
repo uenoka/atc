@@ -21,10 +21,11 @@ def match(xy,pattern,n):
         else:
             for j in xy[i]:
                 print("i,j",i,j)
+                print("lies",lies[j[0]-1],v)
                 if lies[j[0]-1] == -1 :
                     lies[j[0]-1] = j[1]
                 elif lies[j[0]-1] != v:
-                    return
+                    return False
     print(pattern,"is true")
     return True
 
@@ -37,6 +38,7 @@ for i in range(N):
     for _ in range(A):
         a.append(list(map(int, input().split())))
     XY[i] = a
+
 status = [(0, 1) for _ in range(N)]
 state = list(itertools.product(*status))
 ans = []
