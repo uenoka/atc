@@ -1,9 +1,9 @@
 # test.py
-N = 10**3
-print(N)
-for i in range(N):
-    print(i+1 ,end=" ")
-print()
-print(N)
-for i in range(N):
-    print(i+1 ,i+5)
+# num = pow((10+26), 44)  # Google spread sheet は数字 + アルファベットの44桁
+num = pow((17), 40)  # gitのハッシュの場合16進数の40桁
+# 1秒に1億個のファイルが作成されて使い切るまでの年数
+# per = 100000000 * 60 * 60 * 24 * 365
+# 1秒に1京個のファイルが作成されて使い切るまでの年数
+per = 10000000000000000 * 60 * 60 * 24 * 365
+print(num//per)
+print(num)
