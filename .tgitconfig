@@ -1,4 +1,0 @@
-[hook "precommit"]
-	cmdline = C:\\Users\\ka.ueno\\work\\workspace\\githook\\prepare-commit-msg-2
-	wait = false
-	show = false
