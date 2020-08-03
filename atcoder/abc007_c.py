@@ -26,9 +26,7 @@ for i in range(R):
     glid.append(list(input()))
 dx = [0, 1, 0, -1]
 dy = [1, 0, -1, 0]
-
 step = [[-1]*C for i in range(R)]
-
 q = queue.Queue()
 q.put((s_r-1, s_c-1))
 step[s_r-1][s_c-1] = 0
