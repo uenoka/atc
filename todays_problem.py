@@ -142,7 +142,6 @@ problem_list = [
 ]
 cnt = 0
 todays_problem = [random.randint(0, 100) for i in range(3)]
-print(todays_problem)
 for theme in problem_list:
     for problem in theme[1]:
         if cnt in todays_problem:
