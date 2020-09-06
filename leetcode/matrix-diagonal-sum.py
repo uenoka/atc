@@ -19,11 +19,22 @@ class Solution:
             ans -= mat[mid][mid]
         return ans
 
+    def diagonalSum2(self, mat) -> int:
+        idx = 0
+        mid = len(mat)//2
+        length = len(mat)-1
+        ans = 0
+        for i in mat:
+            ans += i[idx] + i[length-idx]
+            idx += 1
+        if length % 2 == 0 and length % 2 == 0:
+            ans -= mat[mid][mid]
+        return ans
+
 
 sol = Solution()
-mat = [[1, 1, 1, 1],
-       [1, 1, 1, 1],
-       [1, 1, 1, 1],
-       [1, 1, 1, 1]]
+mat = [[1, 2, 3],
+       [4, 5, 6],
+       [7, 8, 9]]
 
-print(sol.diagonalSum(mat))
+print(sol.diagonalSum2(mat))
