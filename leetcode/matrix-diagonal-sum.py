@@ -19,12 +19,19 @@ class Solution:
             ans -= mat[mid][mid]
         return ans
 
-    def diagonalSum2(self, mat) -> int:
-        idx = 0
-        mid = len(mat)//2
-        length = len(mat)-1
-        ans = 0
-        for i in mat:
+
+'''
+ちょっと while 2重なのが（計算量は本質的には変わらないはずだけど）邪魔だから1重にしてみた。
+速度は 33% faster なのでほぼ変わらず。多分 O(N) でそういう表示になるっぽいなぁ、あとはPythonの書き方で早くなるかどうかとか検証する感じなのかな？
+'''
+
+
+def diagonalSum2(self, mat) -> int:
+    idx = 0
+    mid = len(mat)//2
+     length = len(mat)-1
+      ans = 0
+       for i in mat:
             ans += i[idx] + i[length-idx]
             idx += 1
         if length % 2 == 0 and length % 2 == 0:
