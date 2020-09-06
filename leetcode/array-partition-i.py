@@ -10,6 +10,14 @@ class Solution:
         return ans
 
 
+    '''
+    Python だとこういう書き方ができるのもうちょっと勉強したほうがいいな
+    '''
+    def arrayPairSum2(self, nums: List[int]) -> int:
+        nums.sort()
+        return sum(nums[::2])
+
+
 sol = Solution()
 arr = [1, 4, 3, 2]
 print(sol.arrayPairSum(arr))
