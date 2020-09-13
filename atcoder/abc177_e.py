@@ -11,7 +11,20 @@
 これであれば、素因数分解部分を除くと O(N) で計算が可能
 ただし、素因数分解は O(√N) の計算量がかかるため最大で 10**9 となる TLE してしまう。
 そこで osak 法（正式名称?）というアルゴリズムで素因数分解を行う。
+
+ダメだいくつかのテストケースで落ちるけど理由が分からん…
+
 '''
+import math
+from functools import reduce
+
+
+def gcd(*numbers):
+    return reduce(math.gcd, numbers)
+
+
+def gcd_list(numbers):
+    return reduce(math.gcd, numbers)
 
 
 def eratosthenes(n):
@@ -26,7 +39,8 @@ def eratosthenes(n):
 
 N = int(input())
 A = list(map(int, input().split()))
-D = eratosthenes(max(A))
+D = eratosthenes(10**6+1)
+# D = eratosthenes(max(A))
 dic = {}
 for i in A:
     while i != 1:
@@ -35,19 +49,30 @@ for i in A:
         else:
             dic[i] = 1
         i //= D[i]
-
 isPairwise = True
-isNowise = False
 for i in dic.items():
-    print(i)
     if i[1] > 1:
         isPairwise = False
-    if i[1] == N:
-        isNowise = True
+        break
 
-if isPairwise:
+
+def is_pairwise():
+    used_primes = [False] * (10**6 + 1)
+    for a in A:
+        while a > 1:
+            prime = D[a]
+            while a % prime == 0:
+                a //= prime
+            if used_primes[prime]:
+                return False
+            used_primes[prime] = 1
+    return True
+
+
+# if isPairwise:
+if is_pairwise():
     print("pairwise coprime")
-elif isNowise:
-    print("not coprime")
-else:
+elif gcd_list(A) == 1:
     print("setwise coprime")
+else:
+    print("not coprime")
