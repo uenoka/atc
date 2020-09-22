@@ -1,3 +1,7 @@
 # UnionFind.py
 class UnionFind():
-    pass
+    def union(self, a: int, b: int):
+        pass
+
+    def connected(self, a: int, b: int):
+        pass
