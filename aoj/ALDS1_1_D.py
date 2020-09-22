@@ -1,11 +1,12 @@
 # ALDS1_1_D.py
 N = int(input())
-plice = []
+plices = []
 for _ in range(N):
-    plice.append(int(input()))
+    plices.append(int(input()))
 profit = [0]
-_min = 10**9
-_max = 0
-for i in plice:
-    if
-    print()
+_min = plices[0]
+_max = -100000000000
+for i in range(1, N):
+    _max = max(_max, plices[i]-_min)
+    _min = min(_min, plices[i])
+print(_max)
