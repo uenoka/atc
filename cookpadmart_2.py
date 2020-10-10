@@ -54,13 +54,15 @@ def sort_monsters(monsters):
     for i in range(1, len(monsters)):
         v = monsters[i]
         j = i-1
-        while j >= 0 and compare(monsters[j], v):
+        while j >= 0 and learger(monsters[j], v):
             monsters[j+1] = monsters[j]
             j -= 1
+        monsters[j+1] = v
     return monsters
 
 
-def compare(m1, m2):
+# return True if m1 is learger than m2
+def learger(m1, m2):
     api = API()
     result = api.compare(m1, m2)
     if result == 0:
@@ -68,7 +70,9 @@ def compare(m1, m2):
         exit()
 
     result = json.loads(result)
-    print(result)
+    if result["winner"] == m1:
+        return True
+    return False
 
 
 monsters = ["vampire", "troll", "kitaro"]
