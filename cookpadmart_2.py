@@ -54,15 +54,15 @@ def sort_monsters(monsters):
     for i in range(1, len(monsters)):
         v = monsters[i]
         j = i-1
-        while j >= 0 and learger(monsters[j], v):
+        while j >= 0 and is_stronger(v, monsters[j]):
             monsters[j+1] = monsters[j]
             j -= 1
         monsters[j+1] = v
     return monsters
 
 
-# return True if m1 is learger than m2
-def learger(m1, m2):
+# return True if m1 is is_stronger than m2
+def is_stronger(m1, m2):
     api = API()
     result = api.compare(m1, m2)
     if result == 0:
