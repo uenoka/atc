@@ -3,8 +3,13 @@
 create test case 
 '''
 import random
-N = 100
-M = 10**5
+N = 25
+M = 30
 print(N, M)
-for i in range(N):
-    print(random.randrange(1, N), random.randrange(1, M//72))
+for i in range(M):
+    bef = random.randrange(1, N)
+    aft = random.randrange(1, N)
+    while bef == aft:
+        bef = random.randrange(1, N)
+        aft = random.randrange(1, N)
+    print(bef, aft)
