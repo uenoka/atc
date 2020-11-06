@@ -31,7 +31,7 @@ def write_index(blogs):
     index.write('競技プログラミングに参加した記録や、学んだアルゴリズム・データ構造についての記事を記録していきます。\r\n')
     index.write('\r\n')
     for blog in blogs:
-        index.write('['+blog[0]+']'+'('+blog[1]+')\r\n')
+        index.write('['+blog[0]+']'+'(blog/'+blog[1][:-3]+')\r\n')
 
 
 blogs = read_blogs()
