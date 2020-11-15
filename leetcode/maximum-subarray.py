@@ -6,8 +6,8 @@
 
 class Solution:
     def maxSubArray(self, nums) -> int:
-        newNum = maxTotal = nums[0]
-
+        newNum = nums[0]
+        maxTotal = nums[0]
         for i in range(1, len(nums)):
             print('newNum, maxTotal', newNum, maxTotal)
             newNum = max(nums[i], nums[i] + newNum)
