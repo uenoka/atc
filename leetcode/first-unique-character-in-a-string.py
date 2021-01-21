@@ -13,7 +13,3 @@ class Solution:
             if counter[c] == 1:
                 return i
         return -1
-<<<<<<< HEAD
-
-=======
->>>>>>> 7986a04c4c693120887f54ed7450d072234c85a1
