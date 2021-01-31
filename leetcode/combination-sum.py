@@ -7,15 +7,20 @@
 '''
 class Solution:
     def combinationSum(self, candidates, target: int) :
-        def dfs(candidates,target,ret):
-            for i in candidates:
-                ret.append(i)
-                if sum(ret)<=target:
-                    dfs(candidates,target,ret)
-            return  ret
-        return dfs(candidates,target,[])
+        self.ret = []
+        self.dfs(candidates,target,[])
+        return self.ret
 
-    def kb_combinationSum(self, candidates, target: int) :
+    def dfs(self, nums, target, path):
+        if target<0:
+            return
+        if target == 0:
+            self.ret.append(path)
+            return
+        for i in range(len(nums)):
+            self.dfs(nums[i:],target-nums[i],path+[nums[i]])
+
+    def bk_combinationSum(self, candidates, target: int) :
         dp = [[0]*(target+1) for _ in range(len(candidates)+1)]
         for i in range(1,len(candidates)+1):
             for j in range(1,target+1):
