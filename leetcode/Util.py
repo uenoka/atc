@@ -43,6 +43,6 @@ class createBinaryTree:
 
 
 
-# nodeData = [3, 9, 20, None, None, 15, 7]
-# node = createBinaryTree().create(nodeData)
-# createBinaryTree().printNode(node)
+nodeData = [3, 9, 20, None, None, 15, 7]
+node = createBinaryTree().create(nodeData)
+createBinaryTree().printNode(node)
