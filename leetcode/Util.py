@@ -1,5 +1,6 @@
 # Util.py
 from TreeNode import TreeNode
+from ListNode import ListNode
 from collections import deque
 
 class createBinaryTree:
@@ -21,8 +22,7 @@ class createBinaryTree:
                 nodeStack.append(node.left)
         return root
 
-
-    def printNode(self,node):
+    def printNode(self, node):
         if node is None:
             return
         left = node.left
@@ -40,6 +40,26 @@ class createBinaryTree:
         if right is not None:
             self.printNode(right)
 
+class createListNode:
+    def create(self,nodeData):
+        if not nodeData:
+            return None
+        node = ListNode(nodeData[0])
+        currentNode = node
+        for i in nodeData[1:]:
+            print(i)
+            nextNode = ListNode(i)
+            currentNode.next = nextNode
+            currentNode = nextNode
+        return node
+
+
+    def printNode(self,node,idx):
+        if node is None:
+            print("None")
+            return
+        print(node.val , " -> ",end="")
+        return self.printNode(node.next, idx + 1)
 
 
 
