@@ -2,9 +2,9 @@
 class Solution:
     def convert(self, s: str, numRows: int) -> str:
         col = [""]*numRows
-        counter = 2*numRows - 2
+        counter = 0
         for i,c in enumerate(s):
-            print()
+            col[i]
 
         return ""
 
