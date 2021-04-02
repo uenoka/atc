@@ -1,4 +1,7 @@
 # power-of-three.py
+'''
+シンプルに3で割っていく再帰を実装。
+'''
 class Solution:
     def isPowerOfThree(self, n: int) -> bool:
         if n == 0:
