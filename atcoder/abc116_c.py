@@ -1,14 +1,13 @@
-#abc116 c
-def is_same(m):
-    print("len is",len(list(set(m))))
-    return len(list(set(m))) == 1
+# abc116 c
 N = int(input())
-#print(N)
-M = list(map(int,input().split()))
-ans = 0
-highest = max(M)
-tmp = []
-f = [0]*N
-while not is_same(M,F):
-    print("")
-print(ans)
+A = list(map(int, input().split()))
+cnt = 0
+for _ in range(max(A)):
+    cnt += 1
+    for i in range(N):
+        if A[i] <= 0 and (i != 0 or i != N-1) and A[i+1] > 0:
+            cnt += 1
+        A[i] -= 1
+        print(i, cnt)
+    print(A)
+print(cnt)
