@@ -1,25 +1,26 @@
 # paiza_a035.py
-import itertools
-N = int(input())
-A = [int(input()) for i in range(N)]
-
-dp = [False]*101
-dp[0] = True
-used = [[] for i in range(101)]
-for i in range(101):
-    for point in A:
-        if A.count(point) == 1:
-            if i + point < 101 and dp[i] and used[i].count(point) < 1:
-                used[i].append(point)
-                used[i+point].append(point)
-                dp[i + point] = True
+'''
+これで通らないのなんでや…
+'''
+M = int(input())
+A = [0]
+A += [int(input()) for i in range(M)]
+A.sort()
+dp = [[0]*101 for i in range(M+1)]
+dp[0][0]=1
+for i in range(1,M+1):
+    for j in range(101):
+        if A[i]<=j:
+            dp[i][j] = 0 if dp[i-1][j-A[i]]== 0 else 1
         else:
-            if i + point < 101 and dp[i] and used[i].count(point) <= A.count(point):
-                used[i].append(point)
-                used[i+point].append(point)
-                dp[i + point] = True
+            dp[i][j] = dp[i-1][j]
 
-print(dp.count(True))
-for i, flg in enumerate(dp):
-    if flg:
-        print(i)
+ans = 0
+point = []
+for i in range(101):
+    if dp[M][i] != 0:
+        point.append(i)
+        ans +=1
+print(ans)
+for i in point:
+    print(i)
