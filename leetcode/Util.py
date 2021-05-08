@@ -5,6 +5,8 @@ from collections import deque
 
 class createBinaryTree:
     def create(self,nodeData):
+        if not nodeData:
+            return None
         root = TreeNode(nodeData[0])
         nodeQueue = deque()
         pairQueue = deque()
