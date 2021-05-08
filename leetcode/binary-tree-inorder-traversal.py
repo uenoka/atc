@@ -1,6 +1,7 @@
 # binary-tree-inorder-traversal.py
 '''
-
+この程度のものならある程度こんなだろうなぁでいけるようになってきた！
+基礎知識感があるからMedeumなのはちょっと過大評価感があるけど、基礎知識になるものをサクッとできるのうれしい。
 '''
 from typing import List
 from Util import createBinaryTree
