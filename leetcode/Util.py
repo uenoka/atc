@@ -55,7 +55,6 @@ class createListNode:
         node = ListNode(nodeData[0])
         currentNode = node
         for i in nodeData[1:]:
-            print(i)
             nextNode = ListNode(i)
             currentNode.next = nextNode
             currentNode = nextNode
