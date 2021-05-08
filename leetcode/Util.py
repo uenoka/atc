@@ -6,21 +6,29 @@ from collections import deque
 class createBinaryTree:
     def create(self,nodeData):
         root = TreeNode(nodeData[0])
-        nodeStack = []
+        nodeQueue = deque()
         pairQueue = deque()
-        nodeStack.append(root)
+        nodeQueue.append(root)
         for i in range(1,len(nodeData),2):
-            newPair = [nodeData[i], nodeData[i+1]]
+            newPair = self.createPair(nodeData,i)
             pairQueue.append(newPair)
-            node = nodeStack.pop()
+            node = nodeQueue.popleft()
             pair = pairQueue.popleft()
-            if pair[1] is not None:
-                node.right = TreeNode(pair[1])
-                nodeStack.append(node.right)
             if pair[0] is not None:
                 node.left = TreeNode(pair[0])
-                nodeStack.append(node.left)
+                nodeQueue.append(node.left)
+            if pair[1] is not None:
+                node.right = TreeNode(pair[1])
+                nodeQueue.append(node.right)
+
         return root
+
+    def createPair(self,nodeData,i):
+        if i+1 >= len(nodeData):
+            print('last one!',nodeData[i])
+            return [nodeData[i],None]
+        return [nodeData[i], nodeData[i+1]]
+
 
     def printNode(self, node):
         if node is None:
