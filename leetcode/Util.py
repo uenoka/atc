@@ -25,7 +25,6 @@ class createBinaryTree:
 
     def createPair(self,nodeData,i):
         if i+1 >= len(nodeData):
-            print('last one!',nodeData[i])
             return [nodeData[i],None]
         return [nodeData[i], nodeData[i+1]]
 
