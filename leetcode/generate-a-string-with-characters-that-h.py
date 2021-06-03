@@ -12,10 +12,10 @@ class Solution:
             ans += (["a"]*(n-1))
             ans += (["b"])
         else:
-            ans += ["a"]*(n-2)
+            ans += ["a"]*(n)
         return "".join(ans)
 
 
 sol = Solution()
-n = 7
-print(sol.generateTheString(n))
+for n in range(20):
+    print(sol.generateTheString(n))
