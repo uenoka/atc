@@ -1,9 +1,14 @@
+
 # reverse-bits.py
-'''
-文字列にしてひっくり返してあげるのが一番楽だが多分Bit演算らへんのほうがいいのでその方法で考える。
-'''
 class Solution:
     def reverseBits(self, n: int) -> int:
-        ans = 0
-        return ans
+        return
 
+testcases =  [
+    0b00000010100101000001111010011100,
+    0b11111111111111111111111111111101
+]
+
+for n in testcases:
+    sol = Solution().reverseBits(n)
+    print(sol)
