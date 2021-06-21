@@ -1,16 +1,12 @@
 import os
 from typing import List
 from create_fasta_data import create_fasta_data as cfd
-
-def readInput()->List:
-    dir = os.path.dirname(__file__)
-    file = os.path.join(dir, 'rosalind.txt')
-    with open(file, "r") as file:
-        return file.readlines()
+from file_reader import readFile
 
 
 def solve():
-    fasta_data = cfd.create_fasta_format(readInput())
+    strs = readFile(os.path.basename(__file__))
+    fasta_data = cfd().create_fasta_format(strs)
     print(fasta_data)
     ans = []
     for fasta1 in fasta_data:
