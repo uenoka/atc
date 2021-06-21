@@ -3,6 +3,8 @@ RNA -> protain
 protain -> コード数
 などのデータを管理する
 '''
+
+
 codon_count = {
             'A': 4,
             'C': 2,
@@ -90,3 +92,10 @@ rna_to_protain = {'AAA': 'K',
                   'UUC': 'F',
                   'UUG': 'L',
                   'UUU': 'F'}
+
+dna_to_rna ={
+    'A':'U',
+    'G':'C',
+    'T':'A',
+    'C':'G',
+}
