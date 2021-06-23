@@ -99,3 +99,10 @@ dna_to_rna ={
     'T':'A',
     'C':'G',
 }
+
+DNA_base_pair = {
+    'A': 'T',
+    'G': 'C',
+    'T': 'A',
+    'C': 'G',
+}
