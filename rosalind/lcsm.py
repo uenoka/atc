@@ -6,9 +6,14 @@ from create_fasta_data import create_fasta_data as cfd
 import os
 
 
+def findLCString(fasta):
+    pass
+
+
 def solve():
     strs = readFile(os.path.basename(__file__))
     fasta_data = cfd().create_fasta_format(strs)
-
+    ans = findLCString(fasta_data)
 
 solve()
+
