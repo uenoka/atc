@@ -2,12 +2,8 @@
 from typing import List
 class Solution:
     def nextGreatestLetter(self, letters: List[str], target: str) -> str:
-        letters = sorted(list(set(letters)))
-        alphabet = 'abcdefghijklmnopqrstuvwxyz'
-        targetIdx = alphabet.find(target)
         for letter in letters:
-            letterIdx = alphabet.find(letter)
-            if letterIdx > targetIdx:
+            if letter > target:
                 return letter
         return letters[0]
 
