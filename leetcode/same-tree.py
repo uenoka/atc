@@ -21,12 +21,6 @@ class Solution:
         return isSameNode(p,q)
 
 
-def printTree(root, parent=None, lr='parent'):
-    if not root:
-        return
-    print('parent is', parent, 'val is ', root.val, 'place', lr)
-    printTree(root.left, root.val, 'left')
-    printTree(root.right, root.val, 'right')
 
 
 testcases = [
@@ -39,8 +33,8 @@ testcases = [
 for p,q in testcases:
     p = createBinaryTree().create(p)
     q = createBinaryTree().create(q)
-    # printTree(p)
-    # printTree(q)
+    createBinaryTree().printTree(p)
+    createBinaryTree().printTree(q)
 
     sol = Solution().isSameTree(p,q)
     print(sol)

@@ -30,24 +30,13 @@ class createBinaryTree:
             return [nodeData[i],None]
         return [nodeData[i], nodeData[i+1]]
 
-
-    def printNode(self, node):
-        if node is None:
+    def printTree(self,root, parent=None, lr='parent'):
+        if not root:
             return
-        left = node.left
-        right = node.right
-        if left is not None and right is not None:
-            print(node.val, left.val, right.val)
-        elif left is None and right is not None:
-            print(node.val, left.val, right.val)
-        elif right is None and left is not None:
-            print(node.val, left.val, right.val)
-        else:
-            print(node.val, 'null', 'null')
-        if left is not None:
-            self.printNode(left)
-        if right is not None:
-            self.printNode(right)
+        print('parent is', parent, 'val is ', root.val, 'place', lr)
+        self.printTree(root.left, root.val, 'left')
+        self.printTree(root.right, root.val, 'right')
+
 
 class createListNode:
     def create(self,nodeData):
