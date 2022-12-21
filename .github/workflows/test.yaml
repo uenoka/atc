@@ -14,7 +14,7 @@ jobs:
         id: generate_token
         uses: getsentry/action-github-app-token@v1
         with:
-          app_id: ${{ secrets.APP_ID }}
+          app_id: ${{ secrets.APPS_ID }}
           private_key: ${{ secrets.APPS_PUBLIC_KEY }}
       - name: Use token
         env:
