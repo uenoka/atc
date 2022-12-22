@@ -2,6 +2,7 @@
 class Solution:
     def __init__(self):
         self.alphabet = {c : i+1 for i,c in enumerate('abcdefghijklmnopqrstuvwxyz'.upper())}
+        print(self.alphabet)
     def titleToNumber(self, columnTitle: str) -> int:
         columnTitle = reversed(columnTitle)
         ans = 0
