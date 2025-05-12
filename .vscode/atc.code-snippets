@@ -1,0 +1,389 @@
+{
+	// 数値入力系
+	"n input":{
+		"prefix": "nint",
+		"body": [
+			"N = int(input())"
+		]
+	},
+	"x input":{
+		"prefix": "xint",
+		"body": [
+			"X = int(input())"
+		]
+	},
+	"n m input":{
+		"prefix": "nmint",
+		"body": [
+			"N, M = map(int,input().split())"
+		]
+	},
+	"a b input":{
+		"prefix": "abint",
+		"body": [
+			"A, B = map(int,input().split())"
+		]
+	},
+	"x y input":{
+		"prefix": "xyint",
+		"body": [
+			"X, Y = map(int,input().split())"
+		]
+	},
+	"input one line list":{
+		"prefix": "inlist",
+		"body": [
+			"A = list(map(int,input().split()))",
+		]
+	},
+
+// 文字列入力系
+	// 文字列１行入力、Nパターン
+	"n str input":{
+		"prefix": "nstr",
+		"body": [
+			"N = input()"
+		]
+	},
+	// 文字列１行入力、Aパターン
+	"a str input":{
+		"prefix": "astr",
+		"body": [
+			"A = input()"
+		]
+	},
+	// 文字列１行入力、Sパターン
+	"s str input":{
+		"prefix": "sstr",
+		"body": [
+			"S = input()"
+		]
+	},
+
+// 入力複数行系
+	// Nの後に複数行の文字列が入力されるとき
+	"for n input":{
+		"prefix": "forstr",
+		"body": [
+			"N = int(input())",
+			"M = [input() for i in range(N)]"
+		]
+	},
+
+	// Nの後に複数行の数値が入力されるとき
+	"for n input int":{
+		"prefix": "forint",
+		"body": [
+			"N = int(input())",
+			"M = [int(input()) for i in range(N)]"
+		]
+	},
+	// Nの後に複数行のスペース区切りの数値が入力されるとき
+	"for n input int list":{
+		"prefix": "forintls",
+		"body": [
+			"N = int(input())",
+			"M = [map(int,input().split()) for i in range(N)]"
+		]
+	},
+
+	// glid 系
+	"h w input":{
+		"prefix": "loadglid",
+		"body": [
+			"H,W = map(int,input().split())",
+			"glid = [input() for i in range(H)]"
+		]
+	},
+	// その他の機能
+	// 2^N の状態管理（000~111など）
+	// たぶん推奨はN=20~24くらいまで(https://qiita.com/drken/items/872ebc3a2b5caaa4a0d0)
+	"2^N state":{
+		"prefix": "state",
+		"body": [
+			"import itertools",
+			"status = [(0, 1) for _ in range(N)]",
+			"state = list(itertools.product(*status))"
+		]
+	},
+	// 素数判定
+	"prime":{
+		"prefix": "isprime",
+		"body": [
+			"def is_prime(n):",
+			"    if n == 1:",
+			"        return False",
+			"    if n == 2:",
+			"        return True",
+			"    if n%2 == 0:",
+			"        return False",
+			"    for i in range(2,int(n**0.5)+1):",
+			"        if n%i == 0:",
+			"            return False",
+			"    return True",
+		]
+	},
+	// Double型にするとよくないから、i^2 バージョン
+	"prime2":{
+		"prefix": "isprime2",
+		"body": [
+			"def is_prime2(n):",
+			"    if n == 1:",
+			"        return False",
+			"    if n == 2:",
+			"        return True",
+			"    if n%2 == 0:",
+			"        return False",
+			"    i = 1",
+			"    while i**2 <= N:",
+			"        if N%i == 0:",
+			"            return True",
+			"        i += 1",
+			"    return False",
+			"N = int(input())",
+			"print(is_prime(N))",
+			"print(is_prime2(N))",
+		]
+	},
+
+	// 最大公約数
+	"gcd":{
+		"prefix": "gcd",
+		"body": [
+			"import math",
+			"from functools import reduce",
+			"def gcd(*numbers):",
+			"    return reduce(math.gcd, numbers)",
+			"def gcd_list(numbers):",
+			"    return reduce(math.gcd, numbers)",
+		]
+	},
+	// 約数列挙
+	"list divisor":{
+		"prefix": "divlist",
+		"body": [
+			"def make_divisors(n):",
+			"    divisors = []",
+			"    for i in range(1, int(n**0.5)+1):",
+			"        if n % i == 0:",
+			"            divisors.append(i)",
+			"            if i != n // i:",
+			"                divisors.append(n//i)",
+			"    #divisors.sort()",
+			"    return divisors",
+
+		]
+	},
+	// 素因数分解
+	"Prime factorization":{
+		"prefix": "prime_fact",
+		"body": [
+			"'''",
+			"input : 数字",
+			"return : a^p,b^q,...,c^r を {a:p,b:q,...,c:r} の dict で表したもの",
+			"'''",
+			"def prime_factorization(N):",
+			"    pf = {}",
+			"    num = 2",
+			"    while num**2 <= N:",
+			"        cnt = 0",
+			"        while N%num == 0:",
+			"            cnt += 1",
+			"            N = N//num",
+			"        pf[num] = cnt",
+			"        num+=1",
+			"    return pf",
+		]
+	},
+
+	// 同じ数字のカウント
+	"collection":{
+		"prefix": "collection",
+		"body": [
+			"import collections",
+			"L = [int(i) for i in input()]",
+			"C = collections.Counter(L)",
+			
+		]
+	},
+	// アルファベット（地味にBとかで出る）
+	"alphabet":{
+		"prefix": "alphabet",
+		"body": [
+			"alphabet = 'abcdefghijklmnopqrstuvwxyz'",
+		]
+	},
+	
+		// YESを出力
+		"YES":{
+			"prefix": "YES",
+			"body": [
+				"print('YES')",
+			]
+		},
+		// YESを出力
+		"Yes":{
+			"prefix": "Yes",
+			"body": [
+				"print('Yes')",
+			]
+		},
+		// YESを出力
+		"NO":{
+			"prefix": "NO",
+			"body": [
+				"print('NO')",
+			]
+		},
+		// YESを出力
+		"No":{
+			"prefix": "No",
+			"body": [
+				"print('No')",
+			]
+		},
+		// めぐる式二分探索
+		"meguru":{
+			"prefix": "meguru",
+			"body": [
+				"def is_ok(idx,key,target):",
+				"########## wirte criteria here ##########",
+				"    if target[idx] >= key:",
+				"        return True",
+				"    return False",
+				"",
+				"def meguru_bisect(key,target):",
+				"    left = -1",
+				"    right = len(target)",
+				"    while (abs(right - left) > 1):",
+				"        mid = left + (right - left) // 2",
+				"        if is_ok(mid,key,target):",
+				"            right = mid",
+				"        else:",
+				"            left = mid",
+				"    return right",
+			]
+		},
+		"binary search":{
+			"prefix": "binary_search",
+			"body": [
+				"def binary_search(key,target):",
+				"    left = -1",
+				"    right = len(target)",
+				"    while (abs(right - left) > 1):",
+				"        mid = left + (right - left) // 2",
+				"        if mid == key:",
+				"            return mid",
+				"        elif key < mid:",
+				"            right = mid",
+				"        else:",
+				"            left = mid",
+				"    return -1",
+			]
+		},
+		"permutation":{
+			"prefix": "permutation",
+			"body": [
+				"import itertools",
+				"l = [i+1 for i in range(N)]",
+				"target =  itertools.permutations(l)"
+			]
+		},
+		"dsf for glid":{
+			"prefix": "dsf_glid",
+			"body": [
+				"import sys",
+				"sys.setrecursionlimit(500000)",
+				"H,W = map(int,input().split())",
+				"dx = [1,0,-1,0]",
+				"dy = [0,1,0,-1]",
+				"glid = [0]*H",
+				"seen = [[False] * W for i in range(H)]",
+				"def printseen():",
+				"    for i in seen:",
+				"        print(i)",
+				"# 島なら8方向、迷路なら4方向などの行先判定",
+				"def canGo(nh,nw,i,j):",
+				"    # 自身のマスならスキップ",
+				"    if i==0 and j==0:return False",
+				"    # for 迷路",
+				"    # 斜めには動けない（迷路）",
+				"    if (i==1 or i==-1) and (j==1 or j==-1) : return False",
+				"    # 範囲外",
+				"    if nh < 0 or nw < 0 or nh >= H or nw >= W : return False",
+				"    # すでに見ている",
+				"    if seen[nh][nw] : return False",
+				"    # 壁",
+				"    if glid[nh][nw] == '#' : return False",
+				"    # すべての条件を超えたらOK",
+				"    return True",
+				"def dsf(h,w):",
+				"    seen[h][w] =True",
+				"    for i in range(4):",
+				"        nh = h + dx[i]",
+				"        nw = w + dy[i]",
+				"        if canGo(nh,nw,dx[i],dy[i]):",
+				"            dsf(nh,nw)",
+				"for i in range(H):",
+				"    glid[i] = list(input())",
+				"start = [0,0]",
+				"goal = [0,0]",
+				"for i in range(H):",
+				"    for j in range(W):",
+				"        if glid[i][j] == 's': start = [i,j]",
+				"        if glid[i][j] == 'g': goal = [i,j]",
+				"dsf(start[0],start[1])",
+				"if seen[goal[0]][goal[1]]:",
+				"    print('Yes')",
+				"else:",
+				"    print('No')",				
+			]
+		},
+		"dsf for island":{
+			"prefix": "dsf_island",
+			"body": [
+				"# aoj_how_meny_island.py",
+				"import sys",
+				"sys.setrecursionlimit(500000)",
+				"def printseen():",
+				"    for i in seen:",
+				"        print(i)",
+				"def dsf(h,w):",
+				"    seen[h][w]=True",
+				"    for i in dh:",
+				"        for j in dw:",
+				"            nh = h+i",
+				"            nw = w+j",
+				"            if canGo(nh,nw,i,j):",
+				"                dsf(nh,nw)",
+				"    return 1",
+				"def canGo(nh,nw,i,j):",
+				"    # staying",
+				"    if i == 0 and j == 0:return False",
+				"    # out of range",
+				"    if nh < 0 or nw < 0 or nh >= H or nw >= W:return False",
+				"    # if you seen skip it",
+				"    if seen[nh][nw]:return False",
+				"    # if you meet sea skip it ",
+				"    if C[nh][nw] == '0' : return False",
+				"    return True",
+				"W,H = map(int,input().split())",
+				"if W==0 and H==0:",
+				"    exit()",
+				"C = []",
+				"for i in range(H):",
+				"    C.append(input().split())",
+				"seen = [[False for _ in range(W)] for _ in range(H)]",
+				"dh = [-1,0,1]",
+				"dw = [-1,0,1]",
+				"cnt = 0",
+				"for h in range(H):",
+				"    for w in range(W):",
+				"        # すでに見てる場所と、海は見ない",
+				"        if not seen[h][w] and not C[h][w]=='0':",
+				"            cnt += dsf(h,w)",
+				"print(cnt)",				
+			]
+		},
+
+}
