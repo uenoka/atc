@@ -4,71 +4,91 @@
 この店では、いくつかの指定された品物を無料で買えるクーポン券が配布されています。
 
 太郎君は $M$ 枚のクーポン券を持っています。\
-クーポン券 $i$ $(i = 1, 2, \cdots, M)$ の情報は以下の通りです。
+クーポン券 $i$ $(i = 1, 2, \cdots, は無料で買える対象に含まれていない。
+
+M)$ の情報は以下の通りです。
 
 * $A\_{i, j} = 1$ のとき：品物 $j$ は無料で買える対象に含まれている。
-* $A\_{i, j} = 0$ のとき：品物 $j$ は無料で買える対象に含まれていない。
+* $A\_{i, j} = 0$ のとき：品物 $j$ 最小何枚のクーポン券を使うことで、$N$ 種類すべての品物を買うことができますか。
 
-最小何枚のクーポン券を使うことで、$N$ 種類すべての品物を買うことができますか。
-
-# 問題概要
-
-Nこの商品があり、M個のクーポンがある
-クーポンにはN個の商品のうちいくつかが無料になると書いてある。
-できるだけ少ないクーポン数ですべての商品を無料にしたい。
-
-# 入力例
-
-3 4
-0 0 1
-0 1 0
-1 0 0
-1 1 0
--> 2(1, 4 枚目を使う)
-
-# 考察
-
-M個のクーポンを使う、使わない、のステータスを管理するDPテーブルって感じかな?
-例えば3つめまでを使う、使わない、を管理すると
-0 0 0
-0 1 0
-0 1 1
-0 0 1
-1 0 0
-1 1 0
-1 1 1
-1 0 1
-の8パターンがある。4つ目のクーポンを使う、使わないを見ようとすると
-この8パターンのあとにそれぞれ使う使わないをくっつけるイメージ
-そうすると小さく分割した問題という感じになる。
-それをどうコードに落としていくか、が問題。
-縦をクーポン、横を商品の組み合わせ(入力例でいうと 1,2,3,12,13,123 のそれぞれの組)にする。
-このとき添字を整数表現(商品1を2進数の1桁目の、商品2を2進数の2桁目、というようにしてなしありを0,1で表現すると
-1,2,3,12,13,23,123はそれぞれ、1,2,4,3,5,6,7となる。わかりやすくするために並び順を変えて
-1,2,12,3,13,23,123 の順でやる。)
-多分これをしっかりビット演算とか出来るとうまく出来るんだろうなと思うがちょっとむずい。
-Pythonとかなら添字を文字列にして0,1,10,11,100,みたいにしても良いんでは???
-→ うまくできなかったから一旦写経AC
+# アルゴリズム: BitDP（ビット動的プログラミング）
+商品の取得状態をビットマスクで表現し、各クーポンについて使う/使わないの選択を考える。
 '''
-N, M = map(int, input().split())
 
-INF = 10**10
-dp = [[INF] * (1 << N) for _ in range(M+1)]
-dp[0][0] = 0
+def convert_coupon_to_bitmask(coupon_items, num_items):
+    """
+    クーポンの対象商品リストをビットマスクに変換
+    
+    Args:
+        coupon_items: [0,1,0] のような配列（1なら対象商品）
+        num_items: 商品の総数
+    
+    Returns:
+        int: ビットマスク（例: 5 = 101₂ なら商品1と商品3が対象）
+    """
+    bitmask = 0
+    for item_index in range(num_items):
+        if coupon_items[item_index] == 1:
+            bitmask |= (1 << item_index)  # item_index桁目のビットを立てる
+    return bitmask
 
-for i in range(M):
-    A = list(map(int, input().split()))
-    bit = 0
-    for j in range(N):
-        if A[j]:
-            bit += 1 << j
-    for j in range(1 << N):
-        dp[i+1][j] = dp[i][j]
-    for j in range(1 << N):
-        dp[i+1][j | bit] = min(dp[i+1][j | bit], dp[i][j] + 1)
+def solve_minimum_coupon_problem(num_items, coupons):
+    """
+    最小クーポン数で全商品を取得する問題を解く
+    
+    Args:
+        num_items: 商品数 N
+        coupons: クーポンのリスト
+    
+    Returns:
+        int: 最小クーポン数（不可能なら-1）
+    """
+    INF = 10**10
+    num_coupons = len(coupons)
+    total_states = 1 << num_items  # 2^N 通りの商品取得状態
+    
+    # dp[i][mask] = i枚目のクーポンまで見て、商品取得状態がmaskの時の最小クーポン数
+    dp = [[INF] * total_states for _ in range(num_coupons + 1)]
+    dp[0][0] = 0  # 初期状態: 0枚使って何も取得していない
+    
+    for coupon_idx in range(num_coupons):
+        coupon_bitmask = convert_coupon_to_bitmask(coupons[coupon_idx], num_items)
+        
+        # 全ての状態について遷移を考える
+        for current_state in range(total_states):
+            # 1. このクーポンを使わない場合
+            dp[coupon_idx + 1][current_state] = min(
+                dp[coupon_idx + 1][current_state],
+                dp[coupon_idx][current_state]
+            )
+            
+            # 2. このクーポンを使う場合
+            if dp[coupon_idx][current_state] < INF:
+                new_state = current_state | coupon_bitmask  # 新しく取得できる商品を追加
+                dp[coupon_idx + 1][new_state] = min(
+                    dp[coupon_idx + 1][new_state],
+                    dp[coupon_idx][current_state] + 1
+                )
+    
+    # 全商品取得状態の最小クーポン数を返す
+    all_items_state = (1 << num_items) - 1  # 111...1₂
+    result = dp[num_coupons][all_items_state]
+    
+    return result if result < INF else -1
 
-ans = dp[M][(1 << N) - 1]
-if ans >= INF:
-    print(-1)
-else:
-    print(ans)
+def main():
+    """メイン処理"""
+    # 入力
+    N, M = map(int, input().split())
+    coupons = []
+    
+    for _ in range(M):
+        coupon = list(map(int, input().split()))
+        coupons.append(coupon)
+    
+    # 問題を解く
+    answer = solve_minimum_coupon_problem(N, coupons)
+    print(answer)
+
+if __name__ == "__main__":
+    main()
