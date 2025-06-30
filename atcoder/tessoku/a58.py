@@ -64,7 +64,7 @@ for _ in range(Q):
     if query[0] == 1:
         # クエリ1: 更新
         pos, x = query[1], query[2]
-        seg_tree.upddate_point(pos - 1, x)  # 0-indexedに変換
+        seg_tree.update_point(pos - 1, x)  # 0-indexedに変換
     else:
         # クエリ2: 区間最大値
         l, r = query[1], query[2]
