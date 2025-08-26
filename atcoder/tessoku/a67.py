@@ -17,11 +17,21 @@
 連結かどうかの判定にUnionFindを使用する。
 これをクラスカル法というらしい。
 '''
-
+from atcoder.dsu import DSU
 N, M = map(int,input().split())
-glaph = [{} for _ in range(N)]
-for _ in range(M):
-    A, B, C = map(int,input().split())
-    glaph[A] = {B:C}
-    glaph[B] = {A:C}
-print(glaph)
+A = []
+B = []
+C = []
+for i in range(M):
+    a,b,c = map(int,input().split())
+    A.append(a-1)
+    B.append(b-1)
+    C.append((c,i))
+C = sorted(C, key=lambda x: x[0])
+ans = 0
+uf = DSU(N)
+for c,i in C:
+    if not uf.same(A[i],B[i]):
+        ans += c
+        uf.merge(A[i],B[i])
+print(ans)
