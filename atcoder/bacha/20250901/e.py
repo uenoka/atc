@@ -1,11 +1,14 @@
 '''
-Nこの整数列がある。
-この中から1つ以上選んで、平均値が整数であるものを選ぶと何通りか。
-998244353で割った値を求めよ。
-なんかDPっぽい気はするがあんまわからん。
-平均値だから、選んだ数字と個数が同じ倍数→mod とか見る?
-
-
+ソートしてD枚ずつ見て、合計が D*P 以上なら周遊チケットを使う、それ以降はもう終わりという感じで見る
 '''
-N = int(input())
-A = list(map(int,input().split()))
+N,D,P = map(int,input().split())
+F = list(map(int,input().split()))
+F.sort(reverse=True)
+ans = 0
+for n in range(0,N,D):
+    if sum(F[n:n+D]) > P:
+        ans += P
+    else:
+        ans += sum(F[n:])
+        break
+print(ans)
